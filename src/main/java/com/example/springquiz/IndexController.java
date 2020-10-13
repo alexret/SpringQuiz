@@ -40,6 +40,7 @@ public class IndexController {
 		modelo.addAttribute("pregunta2", "Pascual");
 		modelo.addAttribute("pregunta3", "Messi");
 		modelo.addAttribute("pregunta4", "Chuck Norris");
+		modelo.addAttribute("preguntacorrecta", "Chuck Norris");
 		return modelo;
 	}
 	
@@ -49,6 +50,7 @@ public class IndexController {
 		modelo.addAttribute("pregunta2", "No lo sé");
 		modelo.addAttribute("pregunta3", "Messi");
 		modelo.addAttribute("pregunta4", "Batman");
+		modelo.addAttribute("preguntacorrecta", "Messi");
 		return modelo;
 	}
 	
