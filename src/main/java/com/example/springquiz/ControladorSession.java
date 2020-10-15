@@ -18,7 +18,7 @@ public class ControladorSession {
 	@GetMapping("/session")
 	public String process(Model model, HttpSession session) {
 		@SuppressWarnings("unchecked")
-		List<String> messages = (List<String>) session.getAttribute("MY_SESSION_MESSAGES");
+		List<String> messages = (List<String>) session.getAttribute("respuesta");
 		if (messages == null) {
 		messages = new ArrayList<>();
 		}
@@ -28,22 +28,24 @@ public class ControladorSession {
 	
 	
 	@PostMapping("/persistMessage")
-	public String persistMessage(@RequestParam("msg") String msg, HttpServletRequest request) {
+		public String persistMessage(@RequestParam String respuesta, HttpServletRequest request) {
+		
 	@SuppressWarnings("unchecked")
-	List<String> messages = (List<String>) request.getSession().getAttribute("MY_SESSION_MESSAGES");
-	if (messages == null) {
-	messages = new ArrayList<>();
-	request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
-	}
-	messages.add(msg);
-	request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
-	return "redirect:/session";
+		List<String> messages = (List<String>) request.getSession().getAttribute(respuesta);
+		if (messages == null) {
+			messages = new ArrayList<>();
+			request.getSession().setAttribute("msg", messages);
+		}
+		
+		messages.add(respuesta);
+		request.getSession().setAttribute(respuesta, messages);
+		return "redirect:/index";
 	}
 	
 	@PostMapping("/destroy")
-	public String destroySession(HttpServletRequest request) {
-	request.getSession().invalidate();
-	return "redirect:/session";
+		public String destroySession(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "redirect:/index";
 	}
 
 

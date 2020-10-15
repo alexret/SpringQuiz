@@ -11,27 +11,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
+	int cuenta = 0;
+	int[] numero;
 	
 	@RequestMapping("/index")
 	  public String  get_valor(Model modelo) {
 		
-		File carpeta = new File("src\\main\\resources\\static\\images"); 
-		File[] lista = carpeta.listFiles();    
-		int cuenta=0;
-
-		  for (int i = 0; i < lista.length; i++) 
-		      if (lista[i].isFile())
-		           cuenta++;
+		if (cuenta == 0)
+			setValores();
 		
 		Random r = new Random();
 		int valorDado = r.nextInt(cuenta)+1;
 		
 		if(valorDado == 1) {
 			modelo = pregunta1(modelo);
+			numero[numero.length] = valorDado;
 		} else if (valorDado == 2)
 			modelo = pregunta2(modelo);
 		
 	    return "index";
+	}
+	
+	private void setValores() {
+		File carpeta = new File("src\\main\\resources\\static\\images"); 
+		File[] lista = carpeta.listFiles();    
+
+		for (int i = 0; i < lista.length; i++) 
+		      if (lista[i].isFile())
+		           cuenta++;
+		
+		numero = new int[cuenta];
 	}
 	
 	private Model pregunta1(Model modelo) {
@@ -46,8 +55,8 @@ public class IndexController {
 	
 	private Model pregunta2(Model modelo) {
 		modelo.addAttribute("foto", "images/messi.jpeg");
-		modelo.addAttribute("pregunta1", "Alguien");
-		modelo.addAttribute("pregunta2", "No lo sé");
+		modelo.addAttribute("pregunta1", "Cristiano Ronaldo");
+		modelo.addAttribute("pregunta2", "Superman");
 		modelo.addAttribute("pregunta3", "Messi");
 		modelo.addAttribute("pregunta4", "Batman");
 		modelo.addAttribute("preguntacorrecta", "Messi");
