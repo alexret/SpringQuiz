@@ -1,35 +1,51 @@
 package com.example.springquiz;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
 	int cuenta = 0;
-	int[] numero;
-	
+	List<Integer> numeros = new ArrayList<>();
+
 	@RequestMapping("/index")
 	  public String  get_valor(Model modelo) {
-		
+		obtenerModelo(modelo);
+	    return "index";
+	}
+	
+//	@RequestMapping("/prueba") 
+//	public String  get_siguiente(Model modelo) {
+//		obtenerModelo(modelo);
+//		return "prueba";
+//	}
+	
+	private Model obtenerModelo(Model modelo) {
 		if (cuenta == 0)
 			setValores();
 		
-		Random r = new Random();
-		int valorDado = r.nextInt(cuenta)+1;
+		int valorDado = obtenerValor();
 		
-		if(valorDado == 1) {
+		if(valorDado == 0) {
 			modelo = pregunta1(modelo);
-			numero[numero.length] = valorDado;
-		} else if (valorDado == 2)
+		} else if (valorDado == 1) 
 			modelo = pregunta2(modelo);
+		else
+			return modelo;
 		
-	    return "index";
+		numeros.remove(valorDado);
+		return modelo;
+	}
+	
+	private int obtenerValor( ) {
+		Random r = new Random();
+		return r.nextInt(numeros.size());
 	}
 	
 	private void setValores() {
@@ -38,9 +54,8 @@ public class IndexController {
 
 		for (int i = 0; i < lista.length; i++) 
 		      if (lista[i].isFile())
-		           cuenta++;
-		
-		numero = new int[cuenta];
+		    	  numeros.add(++cuenta);
+				
 	}
 	
 	private Model pregunta1(Model modelo) {

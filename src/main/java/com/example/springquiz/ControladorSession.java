@@ -23,7 +23,7 @@ public class ControladorSession {
 		messages = new ArrayList<>();
 		}
 		model.addAttribute("sessionMessages", messages);
-		return "session";
+		return "redirect:/index";
 	}
 	
 	
@@ -34,10 +34,10 @@ public class ControladorSession {
 		List<String> messages = (List<String>) request.getSession().getAttribute(respuesta);
 		if (messages == null) {
 			messages = new ArrayList<>();
-			request.getSession().setAttribute("msg", messages);
-		}
+			request.getSession().setAttribute(respuesta, messages);
+		} else
+			messages.add(respuesta);
 		
-		messages.add(respuesta);
 		request.getSession().setAttribute(respuesta, messages);
 		return "redirect:/index";
 	}
