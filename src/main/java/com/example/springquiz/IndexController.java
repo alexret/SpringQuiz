@@ -8,25 +8,30 @@ import java.util.Random;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
 	int cuenta = 0;
 	List<Integer> numeros = new ArrayList<>();
-
-	@RequestMapping("/index")
+	int correccion = 0;
+	String rCorrecta = "";
+	
+	@RequestMapping(value="/index", method=RequestMethod.GET)
 	  public String  get_valor(Model modelo) {
-		obtenerModelo(modelo);
-	    return "index";
+	    return obtenerModelo(modelo);
 	}
 	
-//	@RequestMapping("/prueba") 
-//	public String  get_siguiente(Model modelo) {
-//		obtenerModelo(modelo);
-//		return "prueba";
-//	}
+	@RequestMapping(value="/prueba", method=RequestMethod.POST) 
+	public String  get_siguiente(Model modelo, 
+								@RequestParam String respuesta) {
+		
+		corregirPregunta(respuesta);
+		return obtenerModelo(modelo);
+	}
 	
-	private Model obtenerModelo(Model modelo) {
+	private String obtenerModelo(Model modelo) {
 		if (cuenta == 0)
 			setValores();
 		
@@ -36,15 +41,18 @@ public class IndexController {
 			modelo = pregunta1(modelo);
 		} else if (valorDado == 1) 
 			modelo = pregunta2(modelo);
-		else
-			return modelo;
+		else 
+			return "prueba";
 		
 		numeros.remove(valorDado);
-		return modelo;
+		
+		return "index";
 	}
 	
-	private int obtenerValor( ) {
+	private int obtenerValor() {
 		Random r = new Random();
+		if (numeros.size()==0)
+			return -1;
 		return r.nextInt(numeros.size());
 	}
 	
@@ -58,13 +66,22 @@ public class IndexController {
 				
 	}
 	
+	private void corregirPregunta(String respuesta) {
+		if (respuesta.equals(rCorrecta))
+			correccion = correccion + 1;
+		else
+			correccion = correccion - 1;
+		
+	}
+	
 	private Model pregunta1(Model modelo) {
 		modelo.addAttribute("foto", "images/chuck.jpg");
 		modelo.addAttribute("pregunta1", "Pikachu");
 		modelo.addAttribute("pregunta2", "Pascual");
 		modelo.addAttribute("pregunta3", "Messi");
 		modelo.addAttribute("pregunta4", "Chuck Norris");
-		modelo.addAttribute("preguntacorrecta", "Chuck Norris");
+		modelo.addAttribute("correccion", correccion);
+		rCorrecta = "Chuck Norris";
 		return modelo;
 	}
 	
@@ -74,7 +91,8 @@ public class IndexController {
 		modelo.addAttribute("pregunta2", "Superman");
 		modelo.addAttribute("pregunta3", "Messi");
 		modelo.addAttribute("pregunta4", "Batman");
-		modelo.addAttribute("preguntacorrecta", "Messi");
+		modelo.addAttribute("correccion", correccion);
+		rCorrecta = "Messi";
 		return modelo;
 	}
 	

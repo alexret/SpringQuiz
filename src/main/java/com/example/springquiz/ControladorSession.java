@@ -23,7 +23,7 @@ public class ControladorSession {
 		messages = new ArrayList<>();
 		}
 		model.addAttribute("sessionMessages", messages);
-		return "redirect:/index";
+		return "redirect:/prueba";
 	}
 	
 	
@@ -39,13 +39,13 @@ public class ControladorSession {
 			messages.add(respuesta);
 		
 		request.getSession().setAttribute(respuesta, messages);
-		return "redirect:/index";
+		return "redirect:/prueba";
 	}
 	
 	@PostMapping("/destroy")
 		public String destroySession(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return "redirect:/index";
+		return "redirect:/prueba";
 	}
 
 
