@@ -16,7 +16,6 @@ public class IndexController {
 	int cuenta = 0;
 	int correccion = 0;
 	String rCorrecta = "";
-	Model[] modelar;
 	int pagina = 0;
 	List<Integer> aux = new ArrayList<>();
 	
