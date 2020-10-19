@@ -80,8 +80,6 @@ public class IndexController {
 		for (int i = 0; i < lista.length; i++) 
 		      if (lista[i].isFile())
 		    	  cuenta++;
-		
-		modelar = new Model[cuenta];
 	}
 	
 	
