@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class IndexController {
 	int cuenta = 0;
-	List<Integer> numeros = new ArrayList<>();
 	int correccion = 0;
 	String rCorrecta = "";
+	Model[] modelar;
+	int pagina = 0;
+	List<Integer> aux = new ArrayList<>();
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	  public String  get_valor(Model modelo) {
@@ -28,49 +30,71 @@ public class IndexController {
 								@RequestParam String respuesta) {
 		
 		corregirPregunta(respuesta);
+		
 		return obtenerModelo(modelo);
 	}
 	
 	private String obtenerModelo(Model modelo) {
-		if (cuenta == 0)
+		if (cuenta == 0) {
 			setValores();
+		}
 		
+		pagina++;
+		
+		if (pagina > cuenta)
+			return "prueba";
+				
 		int valorDado = obtenerValor();
 		
 		if(valorDado == 0) {
 			modelo = pregunta1(modelo);
 		} else if (valorDado == 1) 
 			modelo = pregunta2(modelo);
-		else 
-			return "prueba";
-		
-		numeros.remove(valorDado);
+		else if (valorDado == 2) 
+			modelo = pregunta3(modelo);
+		else if (valorDado == 3) 
+			modelo = pregunta4(modelo);
 		
 		return "index";
 	}
 	
 	private int obtenerValor() {
 		Random r = new Random();
-		if (numeros.size()==0)
-			return -1;
-		return r.nextInt(numeros.size());
+		
+		int aux_int= r.nextInt(cuenta);
+		
+		if (aux.contains(aux_int)) {
+			
+			while (aux.contains(aux_int))
+				aux_int = r.nextInt(cuenta);
+		}
+		
+		aux.add(aux_int);
+		
+		return aux_int;
 	}
 	
 	private void setValores() {
 		File carpeta = new File("src\\main\\resources\\static\\images"); 
 		File[] lista = carpeta.listFiles();    
-
+		
 		for (int i = 0; i < lista.length; i++) 
 		      if (lista[i].isFile())
-		    	  numeros.add(++cuenta);
-				
+		    	  cuenta++;
+		
+		modelar = new Model[cuenta];
 	}
+	
 	
 	private void corregirPregunta(String respuesta) {
 		if (respuesta.equals(rCorrecta))
-			correccion = correccion + 1;
+			correccion++;
 		else
-			correccion = correccion - 1;
+			correccion--;
+		
+		
+		if (correccion <= 0)
+			correccion = 0;
 		
 	}
 	
@@ -93,6 +117,28 @@ public class IndexController {
 		modelo.addAttribute("pregunta4", "Batman");
 		modelo.addAttribute("correccion", correccion);
 		rCorrecta = "Messi";
+		return modelo;
+	}
+	
+	private Model pregunta3(Model modelo) {
+		modelo.addAttribute("foto", "images/totoro.png");
+		modelo.addAttribute("pregunta1", "Totoro");
+		modelo.addAttribute("pregunta2", "Hulk");
+		modelo.addAttribute("pregunta3", "Charmander");
+		modelo.addAttribute("pregunta4", "Bill Gates");
+		modelo.addAttribute("correccion", correccion);
+		rCorrecta = "Totoro";
+		return modelo;
+	}
+	
+	private Model pregunta4(Model modelo) {
+		modelo.addAttribute("foto", "images/pikachu.png");
+		modelo.addAttribute("pregunta1", "Un ordenador");
+		modelo.addAttribute("pregunta2", "Pikachu");
+		modelo.addAttribute("pregunta3", "The Rock");
+		modelo.addAttribute("pregunta4", "Jackie Chan");
+		modelo.addAttribute("correccion", correccion);
+		rCorrecta = "Pikachu";
 		return modelo;
 	}
 	
