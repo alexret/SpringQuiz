@@ -5,7 +5,11 @@
 	 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 	</head>
 	<body class="bg-gradient-primary">
-		<label th:text=${correccion}></label>  
+	 <h1>Tu puntuaci&oacute;n es <label th:text=${correccion}></label> </h1>
+	<td>
+	    <span th:if="${correccion == 0}"><img alt="" src="puntuacion/gato.jpg"></span>
+	</td>
+		
 	</body>
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">

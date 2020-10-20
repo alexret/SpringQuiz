@@ -40,8 +40,10 @@ public class IndexController {
 		
 		pagina++;
 		
-		if (pagina > cuenta)
+		if (pagina > cuenta) {
+			addPuntuacion(modelo);
 			return "prueba";
+		}
 				
 		int valorDado = obtenerValor();
 		
@@ -93,6 +95,11 @@ public class IndexController {
 		if (correccion <= 0)
 			correccion = 0;
 		
+	}
+	
+	private Model addPuntuacion(Model modelo) {
+		modelo.addAttribute("correccion", correccion);
+		return modelo;
 	}
 	
 	private Model pregunta1(Model modelo) {
