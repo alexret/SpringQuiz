@@ -21,6 +21,11 @@ public class IndexController {
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	  public String  get_valor(Model modelo) {
+		cuenta = 0;
+		correccion = 0;
+		rCorrecta = "";
+		pagina = 0;
+		aux = new ArrayList<>();
 	    return obtenerModelo(modelo);
 	}
 	
