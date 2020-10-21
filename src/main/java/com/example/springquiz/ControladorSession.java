@@ -28,24 +28,24 @@ public class ControladorSession {
 	
 	
 	@PostMapping("/persistMessage")
-		public String persistMessage(@RequestParam String respuesta, HttpServletRequest request) {
+		public String persistMessage(@RequestParam String usuario, HttpServletRequest request) {
 		
 	@SuppressWarnings("unchecked")
-		List<String> messages = (List<String>) request.getSession().getAttribute(respuesta);
+		List<String> messages = (List<String>) request.getSession().getAttribute(usuario);
 		if (messages == null) {
 			messages = new ArrayList<>();
-			request.getSession().setAttribute(respuesta, messages);
+			request.getSession().setAttribute(usuario, messages);
 		} else
-			messages.add(respuesta);
+			messages.add(usuario);
 		
-		request.getSession().setAttribute(respuesta, messages);
-		return "redirect:/prueba";
+		request.getSession().setAttribute(usuario, messages);
+		return "redirect:/index";
 	}
 	
 	@PostMapping("/destroy")
 		public String destroySession(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return "redirect:/prueba";
+		return "redirect:/index";
 	}
 
 

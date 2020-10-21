@@ -19,6 +19,12 @@ public class IndexController {
 	int pagina = 0;
 	List<Integer> aux = new ArrayList<>();
 	
+	@RequestMapping(value="/home", method=RequestMethod.GET)
+	  public String  get_home(Model modelo) {
+
+	    return "home";
+	}
+	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	  public String  get_valor(Model modelo) {
 		cuenta = 0;
