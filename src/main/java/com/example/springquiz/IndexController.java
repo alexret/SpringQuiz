@@ -70,6 +70,8 @@ public class IndexController {
 			modelo = pregunta4(modelo);
 		else if (valorDado == 4) 
 			modelo = pregunta5(modelo);
+		else if (valorDado == 5) 
+			modelo = pregunta6(modelo);
 		
 		return pagina;
 	}
@@ -170,6 +172,18 @@ public class IndexController {
 		modelo.addAttribute("correccion", correccion);
 		rCorrecta = "Tarta";
 		pagina = "preguntatext";
+		return modelo;
+	}
+	
+	private Model pregunta6(Model modelo) {
+		modelo.addAttribute("foto", "images/leche.jpg");
+		modelo.addAttribute("pregunta1", "Vaso");
+		modelo.addAttribute("pregunta2", "Leche");
+		modelo.addAttribute("pregunta3", "Manos");
+		modelo.addAttribute("pregunta4", "No se ve nada");
+		modelo.addAttribute("correccion", correccion);
+		rCorrecta = "Vaso, Leche, Manos";
+		pagina = "preguntacheck";
 		return modelo;
 	}
 	
