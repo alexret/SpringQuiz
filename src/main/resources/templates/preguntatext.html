@@ -7,24 +7,35 @@
 	<body class="bg-gradient-primary">
     <div class="row justify-content-center">
 
+      <div class="col-xl-10 col-lg-12 col-md-9">
         <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
             <div class="row">
+           	 <div class="col-lg-6 d-none d-lg-block"> <img th:src="${foto}" width="500" height="510"></div>
               <div class="col-lg-6">
                 <div class="p-5">
-                <form th:action="@{/persistMessage}" method="post">
-                <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
                   <div class="text-center">
-                    Escribe tu nombre: <input type="text" name="usuario" required="true">
+                    <h1 class="h4 text-gray-900 mb-4">¿Qu&eacute; es el objeto de la imagen?</h1>
                   </div>
+                  <form th:action="@{/prueba}" method="post" class="user">
+                    <div class="form-group">
+                      <input type="text" name="respuesta" th:value="${pregunta4}">
+                    </div>
+                  <hr>
+				<br> 
+				
+				<input class="btn btn-primary btn-icon-split" type="submit" value="Guardar" />
+				
+				</form>
                   
-                  <div class="text-center" style="width:800px; margin:0 auto;">
-                 	
-						<input type="submit" value="Empezar nuevo test" />
-					</form>
+                  <div class="text-center">
+                 	Puntuaci&oacute;n: <label th:text=${correccion}></label>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
       </div>	
     </div>    

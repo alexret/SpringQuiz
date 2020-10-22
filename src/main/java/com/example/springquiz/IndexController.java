@@ -16,8 +16,9 @@ public class IndexController {
 	int cuenta = 0;
 	int correccion = 0;
 	String rCorrecta = "";
-	int pagina = 0;
+	int preguntas = 0;
 	List<Integer> aux = new ArrayList<>();
+	String pagina="";
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	  public String  get_home(Model modelo) {
@@ -25,12 +26,13 @@ public class IndexController {
 	    return "home";
 	}
 	
+	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	  public String  get_valor(Model modelo) {
 		cuenta = 0;
 		correccion = 0;
 		rCorrecta = "";
-		pagina = 0;
+		preguntas = 0;
 		aux = new ArrayList<>();
 	    return obtenerModelo(modelo);
 	}
@@ -49,9 +51,9 @@ public class IndexController {
 			setValores();
 		}
 		
-		pagina++;
+		preguntas++;
 		
-		if (pagina > cuenta) {
+		if (preguntas > cuenta) {
 			addPuntuacion(modelo);
 			return "prueba";
 		}
@@ -66,8 +68,10 @@ public class IndexController {
 			modelo = pregunta3(modelo);
 		else if (valorDado == 3) 
 			modelo = pregunta4(modelo);
+		else if (valorDado == 4) 
+			modelo = pregunta5(modelo);
 		
-		return "index";
+		return pagina;
 	}
 	
 	private int obtenerValor() {
@@ -97,7 +101,7 @@ public class IndexController {
 	
 	
 	private void corregirPregunta(String respuesta) {
-		if (respuesta.equals(rCorrecta))
+		if (respuesta.toUpperCase().equals(rCorrecta.toUpperCase()))
 			correccion++;
 		else
 			correccion--;
@@ -121,6 +125,7 @@ public class IndexController {
 		modelo.addAttribute("pregunta4", "Chuck Norris");
 		modelo.addAttribute("correccion", correccion);
 		rCorrecta = "Chuck Norris";
+		pagina = "index";
 		return modelo;
 	}
 	
@@ -132,6 +137,7 @@ public class IndexController {
 		modelo.addAttribute("pregunta4", "Batman");
 		modelo.addAttribute("correccion", correccion);
 		rCorrecta = "Messi";
+		pagina = "index";
 		return modelo;
 	}
 	
@@ -143,6 +149,7 @@ public class IndexController {
 		modelo.addAttribute("pregunta4", "Bill Gates");
 		modelo.addAttribute("correccion", correccion);
 		rCorrecta = "Totoro";
+		pagina = "index";
 		return modelo;
 	}
 	
@@ -154,6 +161,15 @@ public class IndexController {
 		modelo.addAttribute("pregunta4", "Jackie Chan");
 		modelo.addAttribute("correccion", correccion);
 		rCorrecta = "Pikachu";
+		pagina = "index";
+		return modelo;
+	}
+	
+	private Model pregunta5(Model modelo) {
+		modelo.addAttribute("foto", "images/tarta.jpg");
+		modelo.addAttribute("correccion", correccion);
+		rCorrecta = "Tarta";
+		pagina = "preguntatext";
 		return modelo;
 	}
 	

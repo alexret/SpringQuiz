@@ -27,8 +27,14 @@ public class ControladorSession {
 	}
 	
 	
+	
 	@PostMapping("/persistMessage")
-		public String persistMessage(@RequestParam String usuario, HttpServletRequest request) {
+		public String persistMessage(@RequestParam String usuario, Model modelo,HttpServletRequest request) {
+		
+		if (usuario.isEmpty() || usuario.isBlank() || usuario == null) {
+			modelo.addAttribute("error", "Rellene el campo del nombre");
+			return "home";
+		}
 		
 	@SuppressWarnings("unchecked")
 		List<String> messages = (List<String>) request.getSession().getAttribute(usuario);
