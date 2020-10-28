@@ -44,7 +44,7 @@ public class ControladorSession {
 		} else
 			messages.add(usuario);
 		
-		request.getSession().setAttribute(usuario, messages);
+		request.getSession().setAttribute("usuario", usuario);
 		return "redirect:/index";
 	}
 	

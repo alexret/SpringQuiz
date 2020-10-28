@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,10 @@ public class IndexController {
 	int preguntas = 0;
 	List<Integer> aux = new ArrayList<>();
 	String pagina="";
+	String nombre = "";
+	
+	@Autowired
+	private preguntaDAO p;
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	  public String  get_home(Model modelo) {
@@ -28,12 +35,13 @@ public class IndexController {
 	
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
-	  public String  get_valor(Model modelo) {
+	  public String  get_valor(Model modelo, HttpSession session) {
 		cuenta = 0;
 		correccion = 0;
 		rCorrecta = "";
 		preguntas = 0;
 		aux = new ArrayList<>();
+		nombre = (String) session.getAttribute("usuario");
 	    return obtenerModelo(modelo);
 	}
 	
@@ -115,6 +123,7 @@ public class IndexController {
 	}
 	
 	private Model addPuntuacion(Model modelo) {
+		p.save(nombre, correccion);
 		modelo.addAttribute("correccion", correccion);
 		return modelo;
 	}
@@ -186,9 +195,6 @@ public class IndexController {
 		pagina = "preguntacheck";
 		return modelo;
 	}
-	
 
-	
-	
 
 }
