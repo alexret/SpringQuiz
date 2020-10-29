@@ -33,6 +33,12 @@ public class IndexController {
 	    return "home";
 	}
 	
+	@RequestMapping(value="/resultado", method=RequestMethod.GET)
+	  public String  get_clasificacion(Model modelo) {
+
+	    return "resultado";
+	}
+	
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	  public String  get_valor(Model modelo, HttpSession session) {
