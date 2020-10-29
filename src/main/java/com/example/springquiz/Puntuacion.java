@@ -6,17 +6,18 @@ public class Puntuacion {
 	private int puntuacion;
 	
 	public Puntuacion(String nombre, int puntuacion) {
+		setNombre(nombre);
+		setPuntuacion(puntuacion);
+	}
+	
+	
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+
+	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
-	}
-	
-	
-	public String getNombre() {
-		return nombre;
-	}
-	
-	public int getPuntuacion() {
-		return puntuacion;
 	}
 
 }

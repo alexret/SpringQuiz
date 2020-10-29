@@ -3,6 +3,17 @@
 
 	 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+	 
+	 <style>
+	 @font-face {
+				font-family: "Minecraft";
+				src: url("css/fonts/Minecraft.ttf");
+				src:url("css/fonts/Minecraft.ttf") format("ttf"),
+				}
+	 			 
+	 * {font-family: Minecraft}
+	 </style>
+	 
 	</head>
 	<body class="bg-gradient-primary">
     <div class="row justify-content-center">
@@ -14,15 +25,19 @@
                 <form th:action="@{/persistMessage}" method="post">
                 <table>
                 	<tr>
-                		<th> Clasificaci&oacute;n </th>
-                		<th> Nombres </th>
-                		<th> Puntuaci&oacute;n </th>
+                		<th style="text-align:center"> Clasificaci&oacute;n </th>
+                		<th colspan="2"> </th>
+                		<th style="text-align:center"> Nombres </th>
+                		<th colspan="2"> </th>
+                		<th style="text-align:center"> Puntuaci&oacute;n </th>
                 	</tr>
                 	<th:block th:each="puntuacion,iterStat : ${puntuacion}"> 
  					    <tr>
- 					    	<td th:text="${iterStat.index +1}"></td>  
-					        <td th:text="${puntuacion.Nombre}"></td> 
-					        <td th:text="${puntuacion.Puntuacion}"></td> 
+ 					    	<td style="text-align:center" th:text="${iterStat.index +1}"></td> 
+ 					    	<td colspan="2"></td> 
+					        <td style="text-align:center" th:text="${puntuacion.Nombre}"></td>
+					        <td colspan="2"></td> 
+					        <td style="text-align:center" th:text="${puntuacion.Puntuacion}"></td> 
 					    </tr> 
 					</th:block> 
                 
