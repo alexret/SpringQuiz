@@ -34,9 +34,10 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/resultado", method=RequestMethod.GET)
-	  public String  get_clasificacion(Model modelo) {
-
-	    return "resultado";
+	public String index(Model modelo) {
+		List<Puntuacion> puntuacion = p.recogerdatos();
+		modelo.addAttribute("puntuacion",puntuacion);
+	return "resultado";
 	}
 	
 	

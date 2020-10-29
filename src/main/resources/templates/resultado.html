@@ -12,16 +12,23 @@
               <div class="col-lg-6">
                 <div class="p-5">
                 <form th:action="@{/persistMessage}" method="post">
-                <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
-                  <div style="margin: 6em 0">
-                    Clasificaci&oacute;n
-                  </div>
-                  <div style="margin: 6em auto;">
-                    Nombre
-                  </div>
-                  <div style="margin: 6em 0 0 auto">
-                    Puntos
-                  </div>
+                <table>
+                	<tr>
+                		<th> Clasificaci&oacute;n </th>
+                		<th> Nombres </th>
+                		<th> Puntuaci&oacute;n </th>
+                	</tr>
+                	<th:block th:each="puntuacion,iterStat : ${puntuacion}"> 
+ 					    <tr>
+ 					    	<td th:text="${iterStat.index +1}"></td>  
+					        <td th:text="${puntuacion.Nombre}"></td> 
+					        <td th:text="${puntuacion.Puntuacion}"></td> 
+					    </tr> 
+					</th:block> 
+                
+                
+                </table>
+                
                   <div class="text-center" style="width:800px; margin:0 auto;">
                  
 					</form>
