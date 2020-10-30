@@ -22,7 +22,7 @@ public class conexionController implements preguntaDAO{
 	
 	@Override
 	public List<Puntuacion> recogerdatos() {
-	    String sql = "SELECT * FROM usuarios order by Puntuacion desc";
+	    String sql = "SELECT nombre, puntuacion FROM usuarios order by puntuacion desc";
 
 	    return jdbcTemplate.query(sql,(rs, puntuacion) ->new Puntuacion(rs.getString("nombre"),rs.getInt("puntuacion")));
 	}

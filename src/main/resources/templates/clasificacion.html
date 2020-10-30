@@ -30,12 +30,12 @@
                 		<th colspan="2"> </th>
                 		<th style="text-align:center"> Puntuaci&oacute;n </th>
                 	</tr>
- 					    <tr th:each="datos,iterStat : ${Puntuacion}">
+ 					    <tr th:each="puntuacion,iterStat : ${puntuaciones}">
  					    	<td style="text-align:center" th:text="${iterStat.index +1}"></td> 
  					    	<td colspan="2"></td> 
-					        <td style="text-align:center" th:text="${datos.nombre}"></td>
+					        <td style="text-align:center" th:text="${puntuacion.nombrejugador}"></td>
 					        <td colspan="2"></td> 
-					        <td style="text-align:center" th:text="${datos.puntuacion}"></td> 
+					        <td style="text-align:center" th:text="${puntuacion.puntuacionjugador}"></td> 
 					    </tr> 
                 
                 </table>
