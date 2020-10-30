@@ -6,8 +6,8 @@ public class Puntuacion {
 	private int puntuacion;
 	
 	public Puntuacion(String nombre, int puntuacion) {
-		setNombre(nombre);
-		setPuntuacion(puntuacion);
+		this.nombre = nombre;
+		this.puntuacion = puntuacion;
 	}
 	
 	
@@ -18,6 +18,15 @@ public class Puntuacion {
 
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
+	}
+	
+	public String getNombre(String nombre) {
+		return this.nombre;
+	}
+
+
+	public int getPuntuacion(int puntuacion) {
+		return this.puntuacion;
 	}
 
 }

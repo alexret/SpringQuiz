@@ -116,6 +116,12 @@ public class ControladorSession {
 		
 	}
 	
+	@GetMapping(value="/clasificacion")
+	public String resultado(Model modelo) {
+		List<Puntuacion> datos = p.recogerdatos();
+		modelo.addAttribute("datos",datos);
+	return "clasificacion";
+	}
 	
 	
 	@PostMapping("/destroy")

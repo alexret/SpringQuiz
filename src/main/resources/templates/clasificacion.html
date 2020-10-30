@@ -22,7 +22,6 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="p-5">
-                <form th:action="@{/persistMessage}" method="post">
                 <table>
                 	<tr>
                 		<th style="text-align:center"> Clasificaci&oacute;n </th>
@@ -31,22 +30,18 @@
                 		<th colspan="2"> </th>
                 		<th style="text-align:center"> Puntuaci&oacute;n </th>
                 	</tr>
-                	<th:block th:each="puntuacion,iterStat : ${puntuacion}"> 
- 					    <tr>
+ 					    <tr th:each="datos,iterStat : ${Puntuacion}">
  					    	<td style="text-align:center" th:text="${iterStat.index +1}"></td> 
  					    	<td colspan="2"></td> 
-					        <td style="text-align:center" th:text="${puntuacion.Nombre}"></td>
+					        <td style="text-align:center" th:text="${datos.nombre}"></td>
 					        <td colspan="2"></td> 
-					        <td style="text-align:center" th:text="${puntuacion.Puntuacion}"></td> 
+					        <td style="text-align:center" th:text="${datos.puntuacion}"></td> 
 					    </tr> 
-					</th:block> 
-                
                 
                 </table>
                 
                   <div class="text-center" style="width:800px; margin:0 auto;">
                  
-					</form>
                   </div>
                 </div>
               </div>
