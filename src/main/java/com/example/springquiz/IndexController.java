@@ -33,12 +33,12 @@ public class IndexController {
 	    return "home";
 	}
 	
-	@RequestMapping(value="/resultado", method=RequestMethod.GET)
-	public String index(Model modelo) {
-		List<Puntuacion> puntuacion = p.recogerdatos();
-		modelo.addAttribute("puntuacion",puntuacion);
-	return "resultado";
-	}
+//	@RequestMapping(value="/resultado", method=RequestMethod.GET)
+//	public String index(Model modelo) {
+//		List<Puntuacion> puntuacion = p.recogerdatos();
+//		modelo.addAttribute("puntuacion",puntuacion);
+//	return "resultado";
+//	}
 	
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
@@ -113,6 +113,17 @@ public class IndexController {
 	    return "pregunta6";
 	}
 	
+	@RequestMapping(value="/resultado", method=RequestMethod.GET)
+	  public String  get_resultado(Model modelo) {
+//		cuenta = 0;
+//		correccion = 0;
+//		rCorrecta = "";
+//		preguntas = 0;
+//		aux = new ArrayList<>();
+//		nombre = (String) session.getAttribute("usuario");
+//		pregunta6(modelo);
+	    return "resultado";
+	}
 	
 	
 //	@RequestMapping(value="/prueba", method=RequestMethod.POST) 

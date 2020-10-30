@@ -24,21 +24,21 @@ public class ControladorSession {
 	private int puntos;
 	
 	@PostMapping("/inicio")
-	public String persistMessage0(@RequestParam("usuario") String usuario, Model modelo, HttpServletRequest request) {
+	public String persistMessage(@RequestParam("nombre") String nombre, Model modelo, HttpServletRequest request) {
 		puntos = 0;
-		if (usuario.isEmpty() || usuario.isBlank() || usuario == null) {
+		if (nombre.isEmpty() || nombre.isBlank() || nombre == null) {
 			modelo.addAttribute("error", "Rellene el campo del nombre");
 			return "home";
 		}
 		
-		request.getSession().setAttribute("usuario", usuario);
+		request.getSession().setAttribute("nombre", nombre);
 		return "redirect:/index";
 	}	
 	
 	
 	@PostMapping("/pregunta1")
 	public String pregunta1(@RequestParam String respuesta1, Model modelo, HttpServletRequest request) {
-		if (request.getParameter("respuesta1") == "Chuck Norris")
+		if (request.getParameter("respuesta1").equals("Chuck Norris"))
 			puntos++;
 		else
 			puntos--;
@@ -49,17 +49,17 @@ public class ControladorSession {
 	@PostMapping("/pregunta2")
 	public String pregunta2(@RequestParam String respuesta2, Model modelo, HttpServletRequest request) {
 		
-		if (request.getParameter("respuesta2") == "Messi")
+		if (request.getParameter("respuesta2").equals("Messi"))
 			puntos++;
 		else
 			puntos--;
 		return "redirect:/index3";
 	}
-	
+		
 	@PostMapping("/pregunta3")
 	public String pregunta3(@RequestParam String respuesta3, Model modelo, HttpServletRequest request) {
 		
-		if (request.getParameter("respuesta3").toUpperCase() == "TARTA")
+		if (request.getParameter("respuesta3").toUpperCase().equals("TARTA"))
 			puntos++;
 		else
 			puntos--;
@@ -67,19 +67,32 @@ public class ControladorSession {
 	}
 	
 	@PostMapping("/pregunta4")
-	public String pregunta4(@RequestParam String respuesta4, Model modelo, HttpServletRequest request) {
+	public String pregunta4(HttpServletRequest request) {
+		boolean comprobar = false;
+		String[] valor = request.getParameterValues("respuesta4");
+		int contador = 0;
 		
-		if (request.getParameter("respuesta4") == "Vaso, Leche, Manos")
+		for(int i = 0; i < valor.length; i++) {
+			if(valor[i].equals("Vaso"))
+				contador++;
+			else if (valor[i].equals("Leche"))
+				contador++;
+			else if (valor[i].equals("Manos"))
+				contador++;
+		}
+
+		if (contador == 3)
 			puntos++;
 		else
 			puntos--;
+		
 		return "redirect:/index5";
 	}
 	
 	@PostMapping("/pregunta5")
 	public String pregunta5(@RequestParam String respuesta5, Model modelo, HttpServletRequest request) {
 		
-		if (request.getParameter("respuesta5") == "Pikachu")
+		if (request.getParameter("respuesta5").equals("Pikachu"))
 			puntos++;
 		else
 			puntos--;
@@ -87,24 +100,23 @@ public class ControladorSession {
 	}
 	
 	@PostMapping("/pregunta6")
-	public void pregunta6(@RequestParam String respuesta6, Model modelo, HttpServletRequest request) {
+	public String pregunta6(@RequestParam String respuesta6, Model modelo, HttpServletRequest request, HttpSession session) {
 		
 		if (request.getParameter("respuesta6").length() > 0)
 			puntos++;
 		else
 			puntos--;
-		resultado(modelo, request);
-	}
-	
-	
-	private String resultado(Model modelo, HttpServletRequest session) {
 		
-		modelo.addAttribute("puntuacion", puntos);
-		String nombre = (String) session.getAttribute("usuario");
-		p.save(nombre, puntos);
+		if (puntos < 0)
+			puntos = 0;
 		
+		p.save((String) session.getAttribute("nombre"), puntos);
+		modelo.addAttribute("puntos", puntos);
 		return "resultado";
+		
 	}
+	
+	
 	
 	@PostMapping("/destroy")
 		public String destroySession(HttpServletRequest request) {

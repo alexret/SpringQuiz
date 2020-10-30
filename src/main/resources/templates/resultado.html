@@ -12,17 +12,16 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <span th:if="${correccion == 0}"><img alt="" src="puntuacion/gato.jpg" width="680" height="438"></span>
-                    <span th:if="${correccion == 1}"><img alt="" src="puntuacion/yamcha.jpg" width="680" height="438"></span>
-                    <span th:if="${correccion == 2}"><img alt="" src="puntuacion/fry-dinero.jfif" width="680" height="438"></span>
-                    <span th:if="${correccion == 3}"><img alt="" src="puntuacion/fry.jpg" width="680" height="438" ></span>
-                    <span th:if="${correccion == 4}"><img alt="" src="puntuacion/rey.gif" width="680" height="438"></span>
-                    <span th:if="${correccion == 5}"><img alt="" src="puntuacion/rey.gif" width="680" height="438"></span>
-                    <span th:if="${correccion == 6}"><img alt="" src="puntuacion/rey.gif" width="680" height="438"></span>
+                    <span th:if="${puntos == 0}"><img alt="" src="puntuacion/gato.jpg" width="680" height="438"></span>
+                    <span th:if="${puntos == 1}"><img alt="" src="puntuacion/yamcha.jpg" width="680" height="438"></span>
+                    <span th:if="${puntos == 2}"><img alt="" src="puntuacion/fry-dinero.jfif" width="680" height="438"></span>
+                    <span th:if="${puntos == 3}"><img alt="" src="puntuacion/fry.jpg" width="680" height="438" ></span>
+                    <span th:if="${puntos == 4}"><img alt="" src="puntuacion/rey.gif" width="680" height="438"></span>
+                    <span th:if="${puntos == 5}"><img alt="" src="puntuacion/rey.gif" width="680" height="438"></span>
                   </div>
                   
                   <div class="text-center" style="width:800px; margin:0 auto;">
-                 	<h1>Tu puntuaci&oacute;n es: <label th:text=${correccion}></label></h1>
+                 	<h1>Tu puntuaci&oacute;n es: <label th:text=${puntos}></label></h1>
                  	<form th:action="@{/destroy}" method="post">
 						<input type="submit" value="Empezar nuevo test" />
 					</form>
