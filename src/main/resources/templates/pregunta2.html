@@ -17,26 +17,24 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Elige la opci&oacute;n correcta</h1>
                   </div>
-                  <form th:action="@{/pregunta1}" method="post" class="user">
+                  <form th:action="@{/pregunta2}" method="post" class="user">
                     <div class="form-group">
                       &iquest; Qui&eacute;n es el personaje de la imagen?
                     </div>
                     <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta1}"> <label th:text=${pregunta1}></label>
+                      <input  class="btn btn-primary btn-icon-split" name="respuesta2" type="submit" th:value="${pregunta1}">
                     </div>
                     <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta2}"> <label th:text=${pregunta2}></label>
+                      <input class="btn btn-primary btn-icon-split" name="respuesta2" type="submit" th:value="${pregunta2}"> 
                     </div>
                     <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta3}"> <label th:text=${pregunta3}></label>
+                      <input  class="btn btn-primary btn-icon-split" name="respuesta2" type="submit" th:value="${pregunta3}">
                     </div>
                     <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta4}"> <label th:text=${pregunta4}></label>
+                      <input class="btn btn-primary btn-icon-split" name="respuesta2" type="submit" th:value="${pregunta4}">
                     </div>
                   <hr>
 				<br> 
-				
-				<input class="btn btn-primary btn-icon-split" type="submit" value="Guardar" />
 				
 				</form>
                   

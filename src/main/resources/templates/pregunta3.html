@@ -15,23 +15,11 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Elige la opci&oacute;n correcta</h1>
+                    <h1 class="h4 text-gray-900 mb-4">¿Qu&eacute; es el objeto de la imagen?</h1>
                   </div>
-                  <form th:action="@{/pregunta1}" method="post" class="user">
+                  <form th:action="@{/pregunta3}" method="post" class="user">
                     <div class="form-group">
-                      &iquest; Qui&eacute;n es el personaje de la imagen?
-                    </div>
-                    <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta1}"> <label th:text=${pregunta1}></label>
-                    </div>
-                    <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta2}"> <label th:text=${pregunta2}></label>
-                    </div>
-                    <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta3}"> <label th:text=${pregunta3}></label>
-                    </div>
-                    <div class="form-group">
-                      <input type="radio" name="respuesta1" th:value="${pregunta4}"> <label th:text=${pregunta4}></label>
+                      <input type="text" name="respuesta3" th:value="${pregunta4}">
                     </div>
                   <hr>
 				<br> 
