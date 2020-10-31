@@ -22,6 +22,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="p-5">
+                
                 <table>
                 	<tr>
                 		<th style="text-align:center"> Clasificaci&oacute;n </th>
@@ -30,7 +31,7 @@
                 		<th colspan="2"> </th>
                 		<th style="text-align:center"> Puntuaci&oacute;n </th>
                 	</tr>
- 					    <tr th:each="puntuacion,iterStat : ${puntuaciones}">
+ 					    <tr th:each="puntuacion,iterStat : ${puntuacion}">
  					    	<td style="text-align:center" th:text="${iterStat.index +1}"></td> 
  					    	<td colspan="2"></td> 
 					        <td style="text-align:center" th:text="${puntuacion.nombrejugador}"></td>

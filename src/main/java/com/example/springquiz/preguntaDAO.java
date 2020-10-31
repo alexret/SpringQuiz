@@ -6,6 +6,6 @@ public interface preguntaDAO {
 	
 	int count();
 	int save(String usuario, int puntuacion);
-	List<Puntuacion> recogerdatos();
+	List<Puntuar> recogerdatos();
 
 }

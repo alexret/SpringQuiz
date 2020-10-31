@@ -118,8 +118,8 @@ public class ControladorSession {
 	
 	@GetMapping(value="/clasificacion")
 	public String resultado(Model modelo) {
-		List<Puntuacion> puntuaciones = p.recogerdatos();
-		modelo.addAttribute("puntuaciones",puntuaciones);
+		List<Puntuar> puntuacion = p.recogerdatos();
+		modelo.addAttribute("puntuacion",puntuacion);
 	return "clasificacion";
 	}
 	
